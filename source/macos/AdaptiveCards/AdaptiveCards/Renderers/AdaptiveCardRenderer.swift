@@ -58,6 +58,11 @@ class AdaptiveCardRenderer {
             rootView.addArrangedSubview(view)
         }
         
+        if let bundle = Bundle(identifier: "com.test.test.AdaptiveCards"),
+           let path = bundle.path(forResource: "cisco", ofType: "jpg") {
+            rootView.backgroundImageView.bgimage = NSImage(byReferencing: URL(fileURLWithPath: path))
+        }
+        
         rootView.layoutSubtreeIfNeeded()
         return rootView
     }
