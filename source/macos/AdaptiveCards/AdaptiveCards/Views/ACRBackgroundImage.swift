@@ -30,9 +30,13 @@ class ACRBackgroundImageView: NSView, CALayerDelegate {
         initialize()
     }
     
+    var cacheFrame: NSRect?
     override func layout() {
-        super.layout()
-        setupBGImage()
+        if cacheFrame != frame {
+            super.layout()
+            setupBGImage()
+            cacheFrame = frame
+        }
     }
     
     func initialize() {
@@ -42,7 +46,9 @@ class ACRBackgroundImageView: NSView, CALayerDelegate {
         bgImageLayer.masksToBounds = false
         bgImageLayer.shadowOffset = NSSize.zero
         bgImageLayer.shadowColor = NSColor.clear.cgColor
-        bgImageLayer.frame = NSRect(x: 0, y: 0, width: frame.width, height: frame.height)
+        bgImageLayer.frame = NSRect(x: 0, y: 0, width: bounds.width, height: bounds.height)
+        bgImageLayer.isGeometryFlipped = true
+        layer?.isGeometryFlipped = true
         layer?.insertSublayer(bgImageLayer, below: layer)
         setupBGImage()
     }
@@ -153,8 +159,6 @@ class ACRBackgroundImageView: NSView, CALayerDelegate {
                 // Do Nothing Basically
                 ratio = 1
             }
-        @unknown default:
-            fatalError()
         }
         bgImageLayer.backgroundColor = NSColor(patternImage: bgimage).cgColor
     }

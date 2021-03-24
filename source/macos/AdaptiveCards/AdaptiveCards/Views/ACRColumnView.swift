@@ -59,7 +59,7 @@ class ACRContentStackView: NSView, ACRContentHoldingViewProtocol {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.fillMode = .repeat
         view.horizontalAlignment = .left
-        view.verticalAlignment = .top
+        view.verticalAlignment = .center
         return view
     }()
     
@@ -175,7 +175,7 @@ class ACRContentStackView: NSView, ACRContentHoldingViewProtocol {
         backgroundImageView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         backgroundImageView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         backgroundImageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        backgroundImageView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        backgroundImageView.bottomAnchor.constraint(equalTo: stackView.bottomAnchor).isActive = true
 
         showCardStackView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         showCardStackView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
