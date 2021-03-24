@@ -56,9 +56,10 @@ class ACRContentStackView: NSView, ACRContentHoldingViewProtocol {
     private (set) lazy var backgroundImageView: ACRBackgroundImageView = {
         let view = ACRBackgroundImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.fillMode = .repeat
+        view.fillMode = .cover
         view.horizontalAlignment = .left
-        view.verticalAlignment = .center
+        view.verticalAlignment = .top
+        // image to be initialized here for the background image from a url
         return view
     }()
     
@@ -174,7 +175,7 @@ class ACRContentStackView: NSView, ACRContentHoldingViewProtocol {
         backgroundImageView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         backgroundImageView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         backgroundImageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        backgroundImageView.bottomAnchor.constraint(equalTo: stackView.bottomAnchor).isActive = true
+        backgroundImageView.bottomAnchor.constraint(equalTo: showCardStackView.topAnchor).isActive = true
 
         showCardStackView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         showCardStackView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
